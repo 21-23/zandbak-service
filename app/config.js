@@ -1,5 +1,5 @@
 exports.wsServerConfig = {
-    uri: 'ws://localhost:81/zandbak'
+    uri: 'ws://localhost:8081/zandbak'
 };
 
 exports.zandbakConfig = {

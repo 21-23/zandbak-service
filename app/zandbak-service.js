@@ -1,6 +1,7 @@
 const WebSocketClient = require('uws');
 
 const zandbak = require('zandbak');
+const { createMessage, parseMessage } = require('message-factory');
 
 const { wsServerConfig, zandbakConfig } = require('./config');
 
@@ -38,7 +39,7 @@ wsClient
         console.error('[zandbak-service]', 'ws error');
     })
     .on('message', (message) => {
-        const { type, payload } = message;
+        const { type, payload } = parseMessage(message);
 
         switch (type) {
             case 'resetWith':
@@ -53,6 +54,8 @@ wsClient
     });
 
 sandbox.on('solved', (task, error, result) => {
+    const response = createMessage('state-service', 'solution', { task, error, result });
+
     // TODO: EPIPE, mother fucker!
-    wsClient.send({ task, error, result });
+    wsClient.send(response);
 });

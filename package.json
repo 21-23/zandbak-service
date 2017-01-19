@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./app/zandbak-service.js",
     "debug": "node --inspect --debug-brk ./app/zandbak-service.js",
+    "start-test-server": "node ./testers/ws-server.js",
     "lint": "eslint ./app",
     "precommit": "lint-staged"
   },
@@ -16,6 +17,7 @@
   "author": "games4nerds",
   "license": "MIT",
   "dependencies": {
+    "message-factory": "games4nerds/message-factory#1.0.0",
     "uws": "^0.12.0",
     "zandbak": "games4nerds/zandbak"
   },
