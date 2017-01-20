@@ -39,7 +39,7 @@ wsClient
         console.error('[zandbak-service]', 'ws error');
     })
     .on('message', (message) => {
-        const { type, payload } = parseMessage(message);
+        const { type, payload } = parseMessage(message, true);
 
         switch (type) {
             case 'resetWith':
