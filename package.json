@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./app/zandbak-service.js",
     "debug": "node --inspect --debug-brk ./app/zandbak-service.js",
-    "start-test-server": "node ./testers/ws-server.js",
+    "start-test-server": "node ./testers/server.js",
     "lint": "eslint ./app",
     "precommit": "lint-staged"
   },

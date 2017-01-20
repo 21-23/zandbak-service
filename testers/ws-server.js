@@ -1,5 +1,4 @@
 const WebSocketServer = require('uws').Server;
-
 const { createMessage } = require('message-factory');
 
 const wss = new WebSocketServer({ port: 8081 });
