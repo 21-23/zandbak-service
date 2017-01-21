@@ -1,6 +1,6 @@
 {
   "name": "zandbak-serivce",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "ZaaS - zandbak as a service",
   "main": "app/zandbak-service.js",
   "scripts": {
