@@ -1127,7 +1127,7 @@ meow@^3.1.0:
     redent "^1.0.0"
     trim-newlines "^1.0.0"
 
-message-factory@games4nerds/message-factory#1.0.0:
+message-factory@games4nerds/message-factory#v1.0.0:
   version "1.0.0"
   resolved "https://codeload.github.com/games4nerds/message-factory/tar.gz/8ae3d81f2902b76b9d3926fcda015b0eb03fbb05"
 
@@ -1838,7 +1838,7 @@ yauzl@2.4.1:
   dependencies:
     fd-slicer "~1.0.1"
 
-zandbak@games4nerds/zandbak:
+zandbak@games4nerds/zandbak#v2.2.2:
   version "2.2.2"
   resolved "https://codeload.github.com/games4nerds/zandbak/tar.gz/e2e90291f6d3a0783add48976e2f87a0a97410bf"
   dependencies:

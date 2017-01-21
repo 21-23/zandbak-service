@@ -17,9 +17,9 @@
   "author": "games4nerds",
   "license": "MIT",
   "dependencies": {
-    "message-factory": "games4nerds/message-factory#1.0.0",
+    "message-factory": "games4nerds/message-factory#v1.0.0",
     "uws": "^0.12.0",
-    "zandbak": "games4nerds/zandbak"
+    "zandbak": "games4nerds/zandbak#v2.2.2"
   },
   "devDependencies": {
     "eslint": "^3.13.1",
