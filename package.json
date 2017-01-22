@@ -15,11 +15,11 @@
     "type": "git"
   },
   "author": "games4nerds",
-  "license": "MIT",
+  "license": "LGPL-3.0",
   "dependencies": {
-    "message-factory": "games4nerds/message-factory#v1.0.0",
+    "message-factory": "games4nerds/message-factory#v1.1.0",
     "uws": "^0.12.0",
-    "zandbak": "games4nerds/zandbak#v2.2.2"
+    "zandbak": "games4nerds/zandbak#v2.3.0"
   },
   "devDependencies": {
     "eslint": "^3.13.1",
