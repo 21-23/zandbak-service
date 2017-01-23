@@ -1,5 +1,5 @@
 {
-  "name": "zandbak-serivce",
+  "name": "zandbak-service",
   "version": "1.3.1",
   "description": "ZaaS - zandbak as a service",
   "main": "app/zandbak-service.js",
@@ -11,7 +11,7 @@
     "precommit": "lint-staged"
   },
   "repository": {
-    "url": "git@github.com:games4nerds/zandbak-serivce.git",
+    "url": "git@github.com:games4nerds/zandbak-service.git",
     "type": "git"
   },
   "author": "games4nerds",
