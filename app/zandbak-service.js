@@ -1,6 +1,8 @@
 const WebSocketClient = require('uws');
 
 const zandbak = require('zandbak');
+const createPhoenix = require('phoenix');
+
 const { createMessage, parseMessage } = require('message-factory');
 
 const { wsServerConfig, zandbakConfig } = require('./config');
@@ -9,7 +11,7 @@ const { wsServerConfig, zandbakConfig } = require('./config');
 console.log('[zandbak-service]', 'ws connection to', wsServerConfig.uri);
 console.log('[zandbak-service]', 'zandbak sand', zandbakConfig.sand);
 
-const wsClient = new WebSocketClient(wsServerConfig.uri);
+const phoenix = createPhoenix(WebSocketClient, { uri: wsServerConfig.uri, timeout: 500 });
 const sandbox = zandbak({
     zandbakOptions: {
         workersCount: zandbakConfig.workersCount,
@@ -26,20 +28,19 @@ const sandbox = zandbak({
 });
 
 function destroy() {
-    wsClient.close();
+    phoenix.destroy();
     sandbox.destroy();
 }
 
-wsClient
-    .on('open', () => {
-        console.log('[zandbak-service]', 'ws connection is opened');
+phoenix
+    .on('connected', () => {
+        console.log('[zandbak-service]', 'phoenix is alive');
     })
-    .on('error', () => {
-        // TODO: why there is no error as a parameter???
-        console.error('[zandbak-service]', 'ws error');
+    .on('disconnected', () => {
+        console.error('[zandbak-service]', 'phoenix disconnected');
     })
     .on('message', (message) => {
-        const { type, payload } = parseMessage(message, true);
+        const { type, payload } = parseMessage(message.data, true);
 
         switch (type) {
             case 'resetWith':
@@ -56,6 +57,5 @@ wsClient
 sandbox.on('solved', (task, error, result) => {
     const response = createMessage('state-service', 'solution', { task, error, result });
 
-    // TODO: EPIPE, mother fucker!
-    wsClient.send(response);
+    phoenix.send(response);
 });
