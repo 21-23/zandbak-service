@@ -1,0 +1,11 @@
+{
+    "remote": {
+        "uri": "ws://localhost:8888/",
+        "indentity": "zandbak-service"
+    },
+    "zandbakConfig": {
+        "sand": "lodash",
+        "workersCount": 2,
+        "maxWorkersCount": 5
+    }
+}

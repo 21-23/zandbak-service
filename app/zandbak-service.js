@@ -1,28 +1,29 @@
+const path = require('path');
+
+const nconf = require('nconf');
 const WebSocketClient = require('uws');
 
 const zandbak = require('zandbak');
 const createPhoenix = require('phoenix');
+const { createMessage, parseMessage, arnaux } = require('message-factory');
 
-const { createMessage, parseMessage } = require('message-factory');
+nconf.argv().env().file(path.resolve(__dirname, './config.json'));
 
-const { wsServerConfig, zandbakConfig } = require('./config');
+console.log('[zandbak-service]', 'ws connection to', nconf.get('remote:uri'));
+console.log('[zandbak-service]', 'zandbak sand', nconf.get('zandbakConfig:sand'));
 
-
-console.log('[zandbak-service]', 'ws connection to', wsServerConfig.uri);
-console.log('[zandbak-service]', 'zandbak sand', zandbakConfig.sand);
-
-const phoenix = createPhoenix(WebSocketClient, { uri: wsServerConfig.uri, timeout: 500 });
+const phoenix = createPhoenix(WebSocketClient, { uri: nconf.get('remote:uri'), timeout: 500 });
 const sandbox = zandbak({
     zandbakOptions: {
-        workersCount: zandbakConfig.workersCount,
-        maxWorkersCount: zandbakConfig.maxWorkersCount,
+        workersCount: nconf.get('zandbakConfig:workersCount'),
+        maxWorkersCount: nconf.get('zandbakConfig:maxWorkersCount'),
         logs: '-error,-warn,-log,+perf',
     },
     eAppOptions: {
         showDevTools: false,
         browserWindow: { width: 400, height: 400, show: false },
         urlOptions: { userAgent: '_qd-ua' },
-        sand: zandbakConfig.sand,
+        sand: nconf.get('zandbakConfig:sand'),
         logs: '-error,-warn,-log',
     }
 });
@@ -35,12 +36,13 @@ function destroy() {
 phoenix
     .on('connected', () => {
         console.log('[zandbak-service]', 'phoenix is alive');
+        phoenix.send(arnaux.checkin(nconf.get('remote:indentity')));
     })
     .on('disconnected', () => {
         console.error('[zandbak-service]', 'phoenix disconnected');
     })
     .on('message', (message) => {
-        const { type, payload } = parseMessage(message.data, true);
+        const { message: { type, payload } } = parseMessage(message.data);
 
         switch (type) {
             case 'resetWith':
@@ -55,7 +57,7 @@ phoenix
     });
 
 sandbox.on('solved', (task, error, result) => {
-    const response = createMessage('state-service', 'solution', { task, error, result });
+    const response = createMessage('state-service', { type: 'solution', task, error, result });
 
     phoenix.send(response);
 });
