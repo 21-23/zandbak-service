@@ -1,7 +1,7 @@
 {
     "remote": {
         "uri": "ws://localhost:8888/",
-        "indentity": "zandbak-service"
+        "indentity": "sandbox-service"
     },
     "zandbakConfig": {
         "sand": "lodash",
