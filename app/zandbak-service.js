@@ -7,7 +7,10 @@ const zandbak = require('zandbak');
 const createPhoenix = require('phoenix');
 const { createMessage, parseMessage, arnaux } = require('message-factory');
 
-nconf.argv().env().file(path.resolve(__dirname, './config.json'));
+/*
+ * Example: export remote_uri='ws://localhost:9999/' && node ./app/zandbak-service.js
+ */
+nconf.argv().env({ separator: '_' }).file(path.resolve(__dirname, './config.json'));
 
 console.log('[zandbak-service]', 'ws connection to', nconf.get('remote:uri'));
 console.log('[zandbak-service]', 'zandbak sand', nconf.get('zandbakConfig:sand'));
