@@ -44,14 +44,14 @@ phoenix
     .on('disconnected', () => {
         console.error('[zandbak-service]', 'phoenix disconnected');
     })
-    .on('message', (message) => {
-        const { message: { type, payload } } = parseMessage(message.data);
+    .on('message', (incomingMessage) => {
+        const { message } = parseMessage(incomingMessage.data);
 
-        switch (type) {
+        switch (message.name) {
             case 'resetWith':
-                return sandbox.resetWith(payload);
-            case 'exec':
-                return sandbox.exec(payload);
+                return sandbox.resetWith(message.filler);
+            case 'solution.evaluate':
+                return sandbox.exec({ taskId: message.taskId, input: message.solution });
             case 'destroy':
                 return destroy();
             default:
@@ -60,7 +60,7 @@ phoenix
     });
 
 sandbox.on('solved', (task, error, result) => {
-    const response = createMessage('state-service', { type: 'solution', task, error, result });
+    const response = createMessage('state-service', { name: 'solution.evaluated', taskId: task.taskId, error, result });
 
     phoenix.send(response);
 });
