@@ -48,8 +48,18 @@ phoenix
         const { message } = parseMessage(incomingMessage.data);
 
         switch (message.name) {
-            case 'resetWith':
-                return sandbox.resetWith(message.filler);
+            case 'sandbox.set':
+                const filler = {
+                    content: message.input,
+                    options: {
+                        reloadWorkers: message.settings.reloadWorkers,
+                        refillWorkers: message.settings.refillWorkers,
+                        taskTimeoutMs: message.settings.timeout,
+                    }
+                };
+                return sandbox.resetWith(filler);
+            case 'sandbox.reset':
+                return sandbox.resetWith(null);
             case 'solution.evaluate':
                 return sandbox.exec({ taskId: message.taskId, input: message.solution });
             case 'destroy':
