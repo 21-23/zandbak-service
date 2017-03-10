@@ -11,17 +11,17 @@
     "precommit": "lint-staged"
   },
   "repository": {
-    "url": "git@github.com:games4nerds/zandbak-service.git",
+    "url": "git@github.com:21-23/zandbak-service.git",
     "type": "git"
   },
-  "author": "games4nerds",
+  "author": "21-23",
   "license": "LGPL-3.0",
   "dependencies": {
-    "message-factory": "games4nerds/message-factory#v2.1.0",
+    "message-factory": "21-23/message-factory#v2.1.0",
     "nconf": "^0.8.4",
-    "phoenix": "games4nerds/phoenix#2.0.3",
+    "phoenix": "21-23/phoenix#2.0.3",
     "uws": "^0.12.0",
-    "zandbak": "games4nerds/zandbak#v2.3.1"
+    "zandbak": "21-23/zandbak#v2.3.1"
   },
   "devDependencies": {
     "eslint": "^3.13.1",
