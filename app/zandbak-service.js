@@ -5,7 +5,9 @@ const WebSocketClient = require('uws');
 
 const zandbak = require('zandbak');
 const createPhoenix = require('phoenix');
-const { createMessage, parseMessage, arnaux } = require('message-factory');
+const { parseMessage, arnaux, protocol: { stateService, sandboxService } } = require('message-factory');
+
+const MESSAGE_NAME = sandboxService.MESSAGE_NAME;
 
 /*
  * Example: export remote_uri='ws://localhost:9999/' && node ./app/zandbak-service.js
@@ -48,7 +50,7 @@ phoenix
         const { message } = parseMessage(incomingMessage.data);
 
         switch (message.name) {
-            case 'sandbox.set':
+            case MESSAGE_NAME.sandboxSet:
                 const filler = {
                     content: message.input,
                     options: {
@@ -58,11 +60,11 @@ phoenix
                     }
                 };
                 return sandbox.resetWith(filler);
-            case 'sandbox.reset':
+            case MESSAGE_NAME.sandboxReset:
                 return sandbox.resetWith(null);
-            case 'solution.evaluate':
+            case MESSAGE_NAME.solutionEvaluate:
                 return sandbox.exec({ taskId: message.taskId, input: message.solution });
-            case 'destroy':
+            case MESSAGE_NAME.destroy:
                 return destroy();
             default:
                 return console.warn('[zandbak-service]', 'unknown message from sw server');
@@ -70,7 +72,7 @@ phoenix
     });
 
 sandbox.on('solved', (task, error, result) => {
-    const response = createMessage('state-service', { name: 'solution.evaluated', taskId: task.taskId, error, result });
+    const response = stateService.solutionEvaluated(task.taskId, result, error);
 
     phoenix.send(response);
 });
