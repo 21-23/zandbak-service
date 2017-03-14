@@ -17,9 +17,9 @@
   "author": "21-23",
   "license": "LGPL-3.0",
   "dependencies": {
-    "message-factory": "21-23/message-factory#2.2.1",
+    "message-factory": "21-23/message-factory#v2.3.0",
     "nconf": "^0.8.4",
-    "phoenix": "21-23/phoenix#2.1.0",
+    "phoenix": "21-23/phoenix#v2.1.0",
     "uws": "^0.12.0",
     "zandbak": "21-23/zandbak#v2.3.1"
   },
