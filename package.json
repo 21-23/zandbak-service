@@ -4,8 +4,8 @@
   "description": "ZaaS - zandbak as a service",
   "main": "app/zandbak-service.js",
   "scripts": {
-    "start": "node ./app/zandbak-service.js",
-    "debug": "node --inspect --debug-brk ./app/zandbak-service.js",
+    "start": "node ./app/zandbak-service.js --logLevel=all",
+    "debug": "node --inspect --debug-brk ./app/zandbak-service.js --logLevel=all",
     "start-test-server": "node ./testers/ws-server.js",
     "lint": "eslint ./app",
     "precommit": "lint-staged"
@@ -20,6 +20,7 @@
     "message-factory": "21-23/message-factory#v2.3.0",
     "nconf": "^0.8.4",
     "phoenix": "21-23/phoenix#v2.1.0",
+    "steno": "21-23/steno#v0.1.0",
     "uws": "^0.12.0",
     "zandbak": "21-23/zandbak#v2.3.1"
   },

@@ -1676,6 +1676,10 @@ staged-git-files@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/staged-git-files/-/staged-git-files-0.0.4.tgz#d797e1b551ca7a639dec0237dc6eb4bb9be17d35"
 
+steno@21-23/steno#v0.1.0:
+  version "0.1.0"
+  resolved "https://codeload.github.com/21-23/steno/tar.gz/4ff07c12dadad7b97d9f93ee8c98a92295c2dca8"
+
 stream-to-observable@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/stream-to-observable/-/stream-to-observable-0.1.0.tgz#45bf1d9f2d7dc09bed81f1c307c430e68b84cffe"

@@ -3,6 +3,7 @@ const path = require('path');
 const nconf = require('nconf');
 const WebSocketClient = require('uws');
 
+const { error, warn, log } = require('steno').default.initSteno('zandbak-service');
 const zandbak = require('zandbak');
 const createPhoenix = require('phoenix');
 const { parseMessage, arnaux, protocol: { stateService, sandboxService } } = require('message-factory');
@@ -14,8 +15,8 @@ const MESSAGE_NAME = sandboxService.MESSAGE_NAME;
  */
 nconf.argv().env({ separator: '_' }).file(path.resolve(__dirname, './config.json'));
 
-console.log('[zandbak-service]', 'ws connection to', nconf.get('remote:uri'));
-console.log('[zandbak-service]', 'zandbak sand', nconf.get('zandbakConfig:sand'));
+log('ws connection to', nconf.get('remote:uri'));
+log('zandbak sand', nconf.get('zandbakConfig:sand'));
 
 const phoenix = createPhoenix(WebSocketClient, { uri: nconf.get('remote:uri'), timeout: 500 });
 const sandbox = zandbak({
@@ -40,11 +41,11 @@ function destroy() {
 
 phoenix
     .on('connected', () => {
-        console.log('[zandbak-service]', 'phoenix is alive');
+        log('phoenix is alive');
         phoenix.send(arnaux.checkin(nconf.get('remote:indentity')));
     })
     .on('disconnected', () => {
-        console.error('[zandbak-service]', 'phoenix disconnected');
+        error('phoenix disconnected');
     })
     .on('message', (incomingMessage) => {
         const { message } = parseMessage(incomingMessage.data);
@@ -67,7 +68,7 @@ phoenix
             case MESSAGE_NAME.destroy:
                 return destroy();
             default:
-                return console.warn('[zandbak-service]', 'unknown message from sw server');
+                return warn('unknown message from sw server');
         }
     });
 
