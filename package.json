@@ -20,7 +20,7 @@
     "message-factory": "21-23/message-factory#v2.3.0",
     "nconf": "^0.8.4",
     "phoenix": "21-23/phoenix#v2.1.0",
-    "steno": "21-23/steno#v0.1.1",
+    "steno": "21-23/steno#v1.0.0",
     "uws": "^0.12.0",
     "zandbak": "21-23/zandbak#v2.3.1"
   },

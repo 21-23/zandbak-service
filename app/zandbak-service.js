@@ -3,7 +3,7 @@ const path = require('path');
 const nconf = require('nconf');
 const WebSocketClient = require('uws');
 
-const { error, warn, log } = require('steno').default.initSteno('zandbak-service');
+const { error, warn, log } = require('steno').initSteno('zandbak-service');
 const zandbak = require('zandbak');
 const createPhoenix = require('phoenix');
 const { parseMessage, arnaux, protocol: { stateService, sandboxService } } = require('message-factory');
