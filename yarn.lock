@@ -1676,10 +1676,6 @@ staged-git-files@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/staged-git-files/-/staged-git-files-0.0.4.tgz#d797e1b551ca7a639dec0237dc6eb4bb9be17d35"
 
-steno@21-23/steno#v0.1.1:
-  version "0.1.1"
-  resolved "https://codeload.github.com/21-23/steno/tar.gz/f1552352cd4c7a63734b3da763d9011e4eb902f6"
-
 steno@21-23/steno#v1.0.0:
   version "1.0.0"
   resolved "https://codeload.github.com/21-23/steno/tar.gz/d61c7f94959893f6d1bb4516ecbff333045d0fc8"
@@ -1836,9 +1832,9 @@ uuid@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
 
-uws@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/uws/-/uws-0.12.0.tgz#07163ea6e687d9731e66821107b5fdf1ee644cbd"
+uws@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/uws/-/uws-0.14.1.tgz#89b8eb7bced272c65621472e878c57f4e0e00640"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
