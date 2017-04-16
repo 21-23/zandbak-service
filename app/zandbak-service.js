@@ -43,6 +43,7 @@ phoenix
     .on('connected', () => {
         log('phoenix is alive');
         phoenix.send(arnaux.checkin(nconf.get('remote:indentity')));
+        // TODO: send hello to state service
     })
     .on('disconnected', () => {
         error('phoenix disconnected');
@@ -72,8 +73,15 @@ phoenix
         }
     });
 
-sandbox.on('solved', (task, error, result) => {
-    const response = stateService.solutionEvaluated(task.taskId, result, error);
+sandbox
+    .on('solved', (task, error, result) => {
+        const response = stateService.solutionEvaluated(task.taskId, result, error);
 
-    phoenix.send(response);
-});
+        phoenix.send(response);
+    })
+    .on('error', (err) => {
+        error('Got an error from sandbox', err);
+        error('Restarting...');
+
+        destroy();
+    });
