@@ -33,7 +33,6 @@ const sandbox = zandbak({
             show: false,
             webPreferences: {
                 devTools: false,
-                nodeIntegration: false,
                 webgl: false,
                 webaudio: false,
             }
