@@ -23,7 +23,7 @@
     "phoenix": "21-23/phoenix#v2.1.0",
     "steno": "21-23/steno#v1.0.0",
     "uws": "^0.14.1",
-    "zandbak": "21-23/zandbak#v2.5.0"
+    "zandbak": "21-23/zandbak#v2.5.1"
   },
   "devDependencies": {
     "eslint": "^3.13.1",

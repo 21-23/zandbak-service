@@ -27,7 +27,17 @@ const sandbox = zandbak({
     },
     eAppOptions: {
         showDevTools: false,
-        browserWindow: { width: 400, height: 400, show: false },
+        browserWindow: {
+            width: 400,
+            height: 400,
+            show: false,
+            webPreferences: {
+                devTools: false,
+                nodeIntegration: false,
+                webgl: false,
+                webaudio: false,
+            }
+        },
         urlOptions: { userAgent: '_qd-ua' },
         sand: nconf.get('zandbakConfig:sand'),
         logs: '-error,-warn,-log',
