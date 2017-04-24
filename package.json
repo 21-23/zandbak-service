@@ -4,8 +4,10 @@
   "description": "ZaaS - zandbak as a service",
   "main": "app/zandbak-service.js",
   "scripts": {
-    "start": "node ./app/zandbak-service.js --logLevel=all",
-    "debug": "node --inspect --debug-brk ./app/zandbak-service.js --logLevel=all",
+    "start": "cross-env ELECTRON_ENABLE_LOGGING=1 node ./app/zandbak-service.js --logLevel=all",
+    "debug": "cross-env ELECTRON_ENABLE_LOGGING=1 node --inspect --debug-brk ./app/zandbak-service.js --logLevel=all",
+    "start:container": "node ./app/zandbak-service.js",
+    "debug:container": "node --inspect --debug-brk ./app/zandbak-service.js",
     "start-test-server": "node ./testers/ws-server.js",
     "lint": "eslint ./app",
     "precommit": "lint-staged"
@@ -26,6 +28,7 @@
     "zandbak": "21-23/zandbak#v2.5.1"
   },
   "devDependencies": {
+    "cross-env": "^4.0.0",
     "eslint": "^3.13.1",
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-import": "^2.2.0",
