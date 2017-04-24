@@ -1938,9 +1938,9 @@ yauzl@2.4.1:
   dependencies:
     fd-slicer "~1.0.1"
 
-zandbak@21-23/zandbak#v2.5.2:
-  version "2.5.2"
-  resolved "https://codeload.github.com/21-23/zandbak/tar.gz/8dd9b7dd2337c4acbc3affc63817812239bd8463"
+zandbak@21-23/zandbak#v2.5.3:
+  version "2.5.3"
+  resolved "https://codeload.github.com/21-23/zandbak/tar.gz/168b50efc28b3025685d415285ef4cf918d9732d"
   dependencies:
     electron "^1.4.13"
     lodash.uniqueid "^4.0.1"
