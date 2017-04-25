@@ -24,6 +24,9 @@ const sandbox = zandbak({
         workersCount: nconf.get('zandbakConfig:workersCount'),
         maxWorkersCount: nconf.get('zandbakConfig:maxWorkersCount'),
         logs: '-error,-warn,-log,+perf',
+        validators: [
+            { name: 'esprima' }
+        ],
     },
     eAppOptions: {
         showDevTools: false,
