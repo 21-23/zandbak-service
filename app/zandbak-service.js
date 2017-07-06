@@ -56,7 +56,7 @@ function destroy() {
 phoenix
     .on('connected', () => {
         log('phoenix is alive');
-        phoenix.send(arnaux.checkin(nconf.get('remote:indentity')));
+        phoenix.send(arnaux.checkin(nconf.get('remote:identity')));
         // TODO: send hello to state service
     })
     .on('disconnected', () => {
