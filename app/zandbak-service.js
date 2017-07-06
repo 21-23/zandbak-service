@@ -22,8 +22,10 @@ const phoenix = createPhoenix(WebSocketClient, { uri: nconf.get('remote:uri'), t
 const sandbox = zandbak({
     zandbakOptions: {
         workersCount: nconf.get('zandbakConfig:workersCount'),
-        maxWorkersCount: nconf.get('zandbakConfig:maxWorkersCount'),
-        logs: '-error,-warn,-log,+perf',
+        workerOptions: {
+            subworkersCount: nconf.get('zandbakConfig:subworkersCount'),
+        },
+        logs: '-error,+perf',
         validators: [
             { name: 'esprima' }
         ],
@@ -42,7 +44,7 @@ const sandbox = zandbak({
         },
         urlOptions: { userAgent: '_qd-ua' },
         sand: nconf.get('zandbakConfig:sand'),
-        logs: '-error,-warn,-log',
+        logs: '-error,+perf',
     }
 });
 

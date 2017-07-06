@@ -4,8 +4,8 @@
         "indentity": "sandbox-service"
     },
     "zandbakConfig": {
-        "sand": "lodash",
+        "sand": "lodash/subworkers",
         "workersCount": 2,
-        "maxWorkersCount": 5
+        "subworkersCount": 5
     }
 }
