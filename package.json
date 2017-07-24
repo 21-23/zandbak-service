@@ -25,7 +25,7 @@
     "phoenix": "21-23/phoenix#v2.1.0",
     "steno": "21-23/steno#v1.0.0",
     "uws": "0.14.1",
-    "zandbak": "21-23/zandbak#v3.0.2-alpha"
+    "zandbak": "21-23/zandbak#v3.0.3-alpha"
   },
   "devDependencies": {
     "cross-env": "^4.0.0",
