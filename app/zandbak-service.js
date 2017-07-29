@@ -68,7 +68,11 @@ phoenix
         switch (message.name) {
             case MESSAGE_NAME.sandboxSet:
                 const filler = {
-                    content: message.input,
+                    content: {
+                        input: message.input,
+                        expected: message.expected,
+                        hidden: message.hidden,
+                    },
                     options: {
                         reloadWorkers: message.settings.reloadWorkers,
                         refillWorkers: message.settings.refillWorkers,
@@ -88,8 +92,8 @@ phoenix
     });
 
 sandbox
-    .on('solved', (task, error, result) => {
-        const response = stateService.solutionEvaluated(task.taskId, result, error);
+    .on('solved', ({ task, error, result, correct }) => {
+        const response = stateService.solutionEvaluated(task.taskId, result, error, correct);
 
         phoenix.send(response);
     })
