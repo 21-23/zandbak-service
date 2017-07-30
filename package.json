@@ -20,7 +20,7 @@
   "license": "LGPL-3.0",
   "private": true,
   "dependencies": {
-    "message-factory": "github:21-23/message-factory#v5.2.2",
+    "message-factory": "github:21-23/message-factory#v5.2.3",
     "nconf": "^0.8.4",
     "phoenix": "21-23/phoenix#v2.1.0",
     "steno": "21-23/steno#v1.0.0",

@@ -57,7 +57,7 @@ phoenix
     .on('connected', () => {
         log('phoenix is alive');
         phoenix.send(arnaux.checkin(nconf.get('remote:identity')));
-        // TODO: send hello to state service
+        phoenix.send(stateService.sandboxConnected());
     })
     .on('disconnected', () => {
         error('phoenix disconnected');
