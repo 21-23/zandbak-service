@@ -4,13 +4,8 @@ const { createMessage } = require('message-factory');
 
 const wss = new WebSocketServer({ port: 8888 });
 
-
 wss.on('connection', (ws) => {
     console.log('ws client connected');
-
-    ws.on('message', (data) => {
-        console.log(data);
-    });
 
     const message = createMessage('sandbox-service', {
         name: 'sandbox.set',
@@ -19,11 +14,19 @@ wss.on('connection', (ws) => {
             { name: 'Johnie', surname: 'Walker', age: 20 },
             { name: 'Adam', surname: 'Smith', age: 99 },
         ],
-        settings: {
-            reloadWorkers: false,
-            refillWorkers: false,
+        expected: `[
+            "Johnie",
+            "Johnie",
+            "Adam"
+        ]`,
+        hidden: [
+            { input: '[{ "name": "hidden name" }]', expected: '["hidden name"]' }
+        ],
+        sandboxSettings: {
             timeout: 500,
-        }
+            inputCopies: 10,
+        },
+        puzzleOptions: {},
     });
     ws.send(message);
 

@@ -1,11 +1,13 @@
 {
     "remote": {
-        "uri": "ws://localhost:8888/",
+        "uri": "ws://127.0.0.1:8888",
         "identity": "sandbox-service"
     },
     "zandbakConfig": {
         "sand": "lodash/subworkers",
+        "backend": "electron",
         "workersCount": 2,
         "subworkersCount": 5
-    }
+    },
+    "logLevel": "all"
 }

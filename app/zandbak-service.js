@@ -20,31 +20,24 @@ log('zandbak sand', nconf.get('zandbakConfig:sand'));
 
 const phoenix = createPhoenix(WebSocketClient, { uri: nconf.get('remote:uri'), timeout: 500 });
 const sandbox = zandbak({
-    zandbakOptions: {
-        workersCount: nconf.get('zandbakConfig:workersCount'),
-        workerOptions: {
+    logLevel: nconf.get('logLevel'),
+    validators: [
+        { name: 'esprima' },
+    ],
+    workers: {
+        count: nconf.get('zandbakConfig:workersCount'),
+        options: {
             subworkersCount: nconf.get('zandbakConfig:subworkersCount'),
-        },
-        logs: '-error,+perf',
-        validators: [
-            { name: 'esprima' }
-        ],
+        }
     },
-    eAppOptions: {
-        showDevTools: false,
-        browserWindow: {
-            width: 400,
-            height: 400,
-            show: false,
-            webPreferences: {
-                devTools: false,
-                webgl: false,
-                webaudio: false,
-            }
-        },
-        urlOptions: { userAgent: '_qd-ua' },
+}, {
+    type: nconf.get('zandbakConfig:backend'),
+    options: {
         sand: nconf.get('zandbakConfig:sand'),
-        logs: '-error,+perf',
+        logLevel: nconf.get('logLevel'),
+        browserWindow: { show: false },
+        showDevTools: false,
+        urlOptions: { userAgent: '_qd-ua' },
     }
 });
 
@@ -67,19 +60,22 @@ phoenix
 
         switch (message.name) {
             case MESSAGE_NAME.sandboxSet:
-                const filler = {
+                return sandbox.resetWith({
                     content: {
                         input: message.input,
                         expected: message.expected,
                         hidden: message.hidden,
                     },
                     options: {
-                        reloadWorkers: message.settings.reloadWorkers,
-                        refillWorkers: message.settings.refillWorkers,
-                        taskTimeoutMs: message.settings.timeout,
+                        sandbox: {
+                            reloadWorkers: !!message.sandboxSettings.reloadWorkers,
+                            refillWorkers: !!message.sandboxSettings.refillWorkers,
+                            taskTimeoutMs: message.sandboxSettings.timeout,
+                            inputCopies: message.sandboxSettings.inputCopies,
+                        },
+                        filler: message.puzzleOptions,
                     }
-                };
-                return sandbox.resetWith(filler);
+                });
             case MESSAGE_NAME.sandboxReset:
                 return sandbox.resetWith(null);
             case MESSAGE_NAME.solutionEvaluate:

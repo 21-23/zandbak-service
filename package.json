@@ -5,9 +5,9 @@
   "main": "app/zandbak-service.js",
   "scripts": {
     "start": "cross-env ELECTRON_ENABLE_LOGGING=1 node ./app/zandbak-service.js --logLevel=all",
-    "debug": "cross-env ELECTRON_ENABLE_LOGGING=1 node --inspect --debug-brk ./app/zandbak-service.js --logLevel=all",
+    "debug": "cross-env ELECTRON_ENABLE_LOGGING=1 node --inspect-brk ./app/zandbak-service.js --logLevel=all",
     "start:container": "node ./app/zandbak-service.js",
-    "debug:container": "node --inspect --debug-brk ./app/zandbak-service.js",
+    "debug:container": "node --inspect-brk ./app/zandbak-service.js",
     "start-test-server": "node ./testers/ws-server.js",
     "lint": "eslint ./app",
     "precommit": "lint-staged"
@@ -25,7 +25,7 @@
     "phoenix": "21-23/phoenix#v2.1.0",
     "steno": "21-23/steno#v1.0.0",
     "uws": "0.14.1",
-    "zandbak": "github:21-23/zandbak#v3.4.0"
+    "zandbak": "github:21-23/zandbak#v4.0.0"
   },
   "devDependencies": {
     "cross-env": "^4.0.0",
