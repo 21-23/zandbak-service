@@ -7,6 +7,8 @@ const wss = new WebSocketServer({ port: 8888 });
 wss.on('connection', (ws) => {
     console.log('ws client connected');
 
+    ws.on('message', console.log);
+
     const message = createMessage('sandbox-service', {
         name: 'sandbox.set',
         input: [
