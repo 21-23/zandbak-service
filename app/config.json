@@ -5,6 +5,7 @@
     },
     "zandbakConfig": {
         "sand": "lodash/subworkers",
+        "validators": "esprima",
         "backend": "electron",
         "workersCount": 2,
         "subworkersCount": 5

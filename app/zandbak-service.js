@@ -18,23 +18,19 @@ nconf.argv().env({ separator: '_' }).file(path.resolve(__dirname, './config.json
 log('ws connection to', nconf.get('remote:uri'));
 log('zandbak sand', nconf.get('zandbakConfig:sand'));
 
-// TODO: parametrize validators
-function getValidators(sand) {
-    if (sand === 'css') {
-        return [
-            { name: 'banned-chars' },
-        ];
-    }
-
-    return [
-        { name: 'esprima' },
-    ];
+function getValidators(validatorsConfig) {
+    return validatorsConfig
+        .split(',')
+        .filter(name => name)
+        .map((name) => {
+            return { name };
+        });
 }
 
 const phoenix = createPhoenix(WebSocketClient, { uri: nconf.get('remote:uri'), timeout: 500 });
 const sandbox = zandbak({
     logLevel: nconf.get('logLevel'),
-    validators: getValidators(nconf.get('zandbakConfig:sand')),
+    validators: getValidators(nconf.get('zandbakConfig:validators')),
     workers: {
         count: nconf.get('zandbakConfig:workersCount'),
         options: {
