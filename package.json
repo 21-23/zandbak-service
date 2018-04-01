@@ -20,12 +20,12 @@
   "license": "LGPL-3.0",
   "private": true,
   "dependencies": {
-    "message-factory": "github:21-23/message-factory#v5.2.3",
+    "message-factory": "github:21-23/message-factory#v6.2.1",
     "nconf": "^0.8.4",
-    "phoenix": "21-23/phoenix#v2.1.0",
+    "phoenix": "github:21-23/phoenix#v2.4.0",
     "steno": "21-23/steno#v1.0.0",
     "uws": "0.14.1",
-    "zandbak": "github:21-23/zandbak#v4.0.2"
+    "zandbak": "github:21-23/zandbak#v4.0.3"
   },
   "devDependencies": {
     "cross-env": "^4.0.0",
