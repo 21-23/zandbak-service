@@ -25,7 +25,7 @@
     "phoenix": "github:21-23/phoenix#v2.4.0",
     "steno": "21-23/steno#v1.0.0",
     "uws": "0.14.1",
-    "zandbak": "github:21-23/zandbak#v4.0.3"
+    "zandbak": "github:21-23/zandbak#v4.1.0"
   },
   "devDependencies": {
     "cross-env": "^4.0.0",
