@@ -21,7 +21,7 @@
   "private": true,
   "dependencies": {
     "message-factory": "github:21-23/message-factory#v6.2.1",
-    "nconf": "^0.8.4",
+    "nconf": "^0.11.4",
     "phoenix": "github:21-23/phoenix#v2.4.0",
     "steno": "21-23/steno#v1.0.0",
     "uws": "0.14.1",
